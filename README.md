@@ -55,6 +55,9 @@
 - [x] 2026-09-16 — CTE / CTE 체이닝 / RANK vs ROW_NUMBER / 재귀 CTE / anti-join 복습
 - [x] 2026-09-16 — CTE 조립(체이닝 vs 병렬) · 다중 소스 집계 LEFT JOIN · RANK 동점 처리 · SQL 디버깅(CTE 한 겹씩 `select *`)
 
+### 웹접근성
+- [x] 2026-09-17 — 시맨틱 HTML / 접근성 트리(role·name·state) / div버튼 4종세트 / 아이콘버튼 aria-label / heading 시맨틱
+
 ## 🔁 복습 리스트 <!-- 누적 (틀린 개념, 주말에 다시) -->
 - [ ] `Element`(DOM) ≠ `ReactNode`(React 자식)
 - [ ] `Record`는 키를 유니온으로
@@ -63,6 +66,7 @@
 - [ ] `RANK`(동점 건너뜀) vs `DENSE_RANK`(안 건너뜀) vs `ROW_NUMBER`(무조건 유일)
 - [ ] window `order by`에 판별컬럼 추가 = 동점 **제거** / 동점 유지하며 표시만 정렬 = **바깥 `ORDER BY`**
 - [ ] `*`는 SELECT(출력) 전용 — `GROUP BY`엔 컬럼 하나하나 명시
+- [ ] div버튼 되살리기 = `role="button"`(≠tab) + `tabIndex={0}` + `aria-label` + `onKeyDown`(Enter/Space)
 
 ## 📝 원칙 메모 <!-- 고정 -->
 - 완벽한 시스템보다 오늘 한 문제
