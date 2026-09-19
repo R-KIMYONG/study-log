@@ -58,6 +58,10 @@
 ### 웹접근성
 - [x] 2026-09-17 — 시맨틱 HTML / 접근성 트리(role·name·state) / div버튼 4종세트 / 아이콘버튼 aria-label / heading 시맨틱
 
+### Vue
+- [x] 2026-09-15 — ref / v-model / 이벤트 / v-for / todo앱
+- [x] 2026-09-18 — computed·watch·v-if·props·emit (미니프로젝트 "책 담기") · defineProps/defineEmits TS · 함수prop vs emit
+
 ## 🔁 복습 리스트 <!-- 누적 (틀린 개념, 주말에 다시) -->
 - [ ] `Element`(DOM) ≠ `ReactNode`(React 자식)
 - [ ] `Record`는 키를 유니온으로
@@ -67,6 +71,9 @@
 - [ ] window `order by`에 판별컬럼 추가 = 동점 **제거** / 동점 유지하며 표시만 정렬 = **바깥 `ORDER BY`**
 - [ ] `*`는 SELECT(출력) 전용 — `GROUP BY`엔 컬럼 하나하나 명시
 - [ ] div버튼 되살리기 = `role="button"`(≠tab) + `tabIndex={0}` + `aria-label` + `onKeyDown`(Enter/Space)
+- [ ] Vue `:add`(프롭/v-bind) ≠ `@add`(이벤트/v-on) — 이름 겹치지 말 것
+- [ ] Vue computed = 값 생성+캐싱 / watch = 부수효과(기본 lazy, 초기 실행은 `immediate:true`)
+- [ ] Vue "props down, events up" — 자식은 부모 함수 모름, `emit`으로 신호만
 
 ## 📝 원칙 메모 <!-- 고정 -->
 - 완벽한 시스템보다 오늘 한 문제
