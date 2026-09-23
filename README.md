@@ -8,15 +8,15 @@
 
 ## ▶️ 지금 여기 (다음 세션 시작점) <!-- ⚠️ 매 세션 끝에 갱신 · 새 대화는 여기부터 읽고 바로 이어감 -->
 - **현재 루프**: **메인 루프 — 코어 3종 `React/Next · TS · JS`** 3일 간격 순환
-- **본격 시작**: 2026-09-22(월)
-- **다음 세션**: 월 = **React/Next Day1**
+- **본격 시작**: 2026-09-22(월) ✅ 시작함
+- **다음 세션**: TS=Block0 마무리(`void`·`interface vs type` 판단)→**Block1 타입설계** / JS=**Day2** / 코테=투포인터 남은 문제(숫자의 표현·보석 쇼핑)
 - **각 코어 다음 진도**:
-  - **React/Next** → Day1: 렌더링·리렌더·메모이제이션(`useMemo`/`useCallback`/`key`)·커스텀훅 _(BookIn에서 나온 "왜 이렇게 되지?"를 교재로)_
-  - **TS** → Day4: 조건부 타입 / `infer` / 매핑드 타입 심화 _(Day1~3 완료)_
-  - **JS** → Day1: 클로저·스코프·`this` + **코테 패턴(해시맵)** 시작
+  - **React/Next** → Day2: `key`의 역할·리스트 재조정(reconciliation)·**커스텀훅** _(Day1 리렌더/메모이제이션 3형제 완료)_
+  - **TS** → **커리큘럼 재설계 완료**(2026-09-23, [ts/CURRICULUM.md](ts/CURRICULUM.md)): 깊이 중심, 목표=**판단력**. **Block0 심화(unknown/never/판별유니온/assertNever) 완료** → 다음 Block0 마무리→Block1 타입설계
+  - **JS** → **Day1(스코프·클로저·this) 완료** → Day2: 프로토타입·이벤트루프·비동기 예정
 - **park(나중에)**: **Vue** = 작은 CRUD 프로젝트로 한 방에 중급 / **SQL** = 전환 턴에서
 - **병렬 지원 트랙**: 매일 공고 확인 → 타당하면 지원 + 메모(회사·스택·결과). 준비도 무관, 사용자 직접 운영.
-- **최근**: 09-20(일) JS/코테 워밍업(해시맵 3문제 + Map/Set·배열도구·reduce·Big-O 정리)
+- **최근**: 09-23 대장정 — ①TS 커리큘럼 재설계(깊이/판단력) + Block0 심화(unknown·never·판별유니온·assertNever) ②JS Day1(스코프·클로저·this: 호출지점 vs 스코프) ③코테 투포인터 2문제 완주(팰린드롬·two-sum) + while 근육 5드릴. while 무한루프 원리 체득
 
 ## 🧭 학습 로드맵 <!-- 숙달 기반 진급 -->
 | 단계 | 토픽 | 목표 수준 | 게이트(통과 기준) |
@@ -59,9 +59,9 @@
 ## 🎓 토픽 상태 <!-- 상태만 갱신 -->
 | 토픽 | 트랙 | 상태 |
 | --- | --- | --- |
-| React/Next | 메인 루프 | 🔥 학습 시작(실무 병행) |
-| TypeScript | 메인 루프 | 🔥 Day3까지 |
-| JS + 코테 | 메인 루프 | 🔥 시작(약점 보강) |
+| React/Next | 메인 루프 | 🔥 Day1 완료(리렌더·메모이제이션) |
+| TypeScript | 메인 루프 | 🔄 커리큘럼 재설계(깊이 중심) · Block0 심화 완료 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
+| JS + 코테 | 메인 루프 | 🔥 Day1 완료(스코프·클로저·this) · 코테 투포인터 진행 |
 | SQL(PostgreSQL) | 전환 턴 | ⏸️ CTE 중급선 (park) |
 | Vue | 전환 턴 | ⏸️ Day2까지 (park, 나중에 프로젝트로) |
 | 웹접근성 | 확장 | 🌱 Day1 맛보기 |
@@ -69,8 +69,12 @@
 | _(GraphQL·테스트 심화 등)_ | 후보 | 💭 |
 
 ## ✅ 진행 기록 <!-- 누적 (새 토픽은 ### 섹션 추가) -->
+### React / Next
+- [x] 2026-09-22 — 렌더 2단계(Render Phase=함수 재호출·JSX 준비 / Commit Phase=diff 후 변경 DOM만 반영) · 리렌더≠DOM repaint · 리렌더 트리거 3가지(state·부모·context) · `React.memo`(props 얕은 비교로 스킵) · `useMemo`(값 캐싱) · `useCallback`(함수 참조 고정, `useMemo(()=>fn)`) · 실전 판단(BookListView: 아이템 20개·가벼움 → memo premature)
+
 ### TypeScript
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
+- [x] 2026-09-23 — **커리큘럼 재설계**(깊이 중심, 목표=판단력, [ts/CURRICULUM.md]) · **Block0 심화**: any/unknown(경계·좁히기강제)·never(빈집합·exhaustiveness)·narrowing·**판별 유니온**(태그+switch)·**assertNever**(재사용 exhaustiveness 가드) · 문제 5개 완료
 
 ### SQL
 - [x] 2026-09-16 — CTE / CTE 체이닝 / RANK vs ROW_NUMBER / 재귀 CTE / anti-join 복습
@@ -85,6 +89,7 @@
 
 ### JS / 코테
 - [x] 2026-09-20 — 해시맵 패턴 3문제 · Map/Set 숙지 · 배열 도구 지도(map/filter/reduce/forEach/find) · reduce 실전(카운팅/그룹핑) · Big-O 시간복잡도
+- [x] 2026-09-23 — **JS Day1**: 스코프(렉시컬)·클로저(makeCounter)·**this(호출지점 vs 스코프, 화살표=렉시컬)** · **코테 투포인터**: 팰린드롬(양끝 동시)·two-sum(양끝 소거)·연속부분수열합(슬라이딩) · **while 근육 5드릴**(3박자: 초기화·조건·전진)
 
 ## 🔁 복습 리스트 <!-- 누적 (틀린 개념, 주말에 다시) -->
 - [ ] `Element`(DOM) ≠ `ReactNode`(React 자식)
@@ -101,6 +106,20 @@
 - [ ] JS: `arr.map()`(행동) ≠ `new Map()`(그릇) · `forEach`는 반환 없음(→새 배열은 map/filter)
 - [ ] JS: 카운팅 관용구 `map.set(k,(map.get(k)||0)+1)` · reduce 3단계(초기값→acc업데이트→return acc)
 - [ ] Big-O: 루프 중첩=차수, 해시(O(1))로 O(n²)→O(n) = 시간초과 해결 핵심
+- [ ] React: 리렌더(함수 재호출) ≠ DOM repaint(반환 JSX가 이전과 다를 때만) — 함수 100번 재호출돼도 JSX 같으면 DOM 안 건드림
+- [ ] React: "props가 연결됨" ≠ "props가 바뀜" — `React.memo`는 부모 리렌더가 아니라 **props 값 변화** 기준으로 스킵 판단
+- [ ] React: `useCallback`은 함수 **참조 고정**(계산 절약 아님!) / `useMemo`는 **값 계산 결과 캐싱** — `useCallback(fn,d) ≡ useMemo(()=>fn,d)`
+- [ ] React: 인라인 `()=>{}`는 매 렌더 새 객체(참조 다름) → `React.memo` 자식의 얕은 비교 깨뜨림 → `useCallback` 필요
+- [ ] React: memo는 "리렌더 빈번 + 무겁거나 개수 많음"일 때만. 숫자 props는 값 비교(참조 무관)
+- [ ] React: 함수는 리렌더 때 **재정의(생성)**되지 **재실행 아님** — 생성 비용은 함수 무게와 무관(≈0). 무거운 계산 캐싱은 `useMemo`(실행+결과저장), `useCallback`은 실행 안 함
+- [ ] React: **단독 `useCallback`은 순손해** — 참조를 소비하는 상대(`React.memo` 자식 / `useEffect`·`useMemo` deps / 커스텀훅 반환함수)가 있을 때만 켠다. 습관적 래핑 = 안티패턴
+- [ ] JS this: 일반함수=**호출지점(점 앞 누구냐)** 로 결정(`obj.hi()`→obj, `f()`→undefined) / 화살표=**정의된 곳의 바깥 this**(렉시컬, 객체리터럴은 스코프 아님). this는 스코프 체인 lookup 아님
+- [ ] JS 클로저: 반환된 안쪽 함수가 바깥 변수를 "기억" → 바깥함수 끝나도 살아있음(makeCounter). 은닉·상태유지·useState 근원
+- [ ] JS while 무한루프 방지 3박자: ①조건 변수 확인 ②모든 갈래에서 전진 or 탈출(return/break) ③언젠가 조건 false. for의 `i++`를 몸통에 직접 넣은 게 while
+- [ ] TS unknown: any의 안전판(좁히기 전 사용 불가) → API응답·JSON.parse·`catch(e)` 경계에서 / never: 빈집합, exhaustiveness(`assertNever`)
+- [ ] TS 판별 유니온: 공통 리터럴 태그 + switch로 갈래 좁힘 + default `never`로 누락 검사(상태 모델링 핵심)
+- [ ] 투포인터: 슬라이딩(같은 방향, 창문 넓혔다 좁힘) vs 양끝(소거: 합 크면 큰쪽 버림 right--, 작으면 left++) / 팰린드롬=양끝 동시 이동
+- [ ] JS: 배열에 값 담기 — `push`=끝에 추가(변경) / `=`=통째 교체. 기본값 있는 배열에 push하면 덧붙음 주의. return 값은 자동으로 안 찍힘(호출을 log해야)
 
 ## 📝 원칙 메모 <!-- 고정 -->
 - 완벽한 시스템보다 오늘 한 문제
