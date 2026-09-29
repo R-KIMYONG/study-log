@@ -9,14 +9,14 @@
 ## ▶️ 지금 여기 (다음 세션 시작점) <!-- ⚠️ 매 세션 끝에 갱신 · 새 대화는 여기부터 읽고 바로 이어감 -->
 - **현재 루프**: **메인 루프 — 코어 3종 `React/Next · TS · JS`** 3일 간격 순환
 - **본격 시작**: 2026-09-22(월) ✅ 시작함
-- **다음 세션**: TS=Block0 마무리(`void`·`interface vs type` 판단)→**Block1 타입설계** / JS=**Day2** / 코테=투포인터 남은 문제(숫자의 표현·보석 쇼핑)
+- **다음 세션**: TS=**Block1 계속(branded types)** / JS=**Day2**(프로토타입·이벤트루프·비동기) / 코테=투포인터 남은 문제(숫자의 표현·보석 쇼핑)
 - **각 코어 다음 진도**:
   - **React/Next** → Day2: `key`의 역할·리스트 재조정(reconciliation)·**커스텀훅** _(Day1 리렌더/메모이제이션 3형제 완료)_
-  - **TS** → **커리큘럼 재설계 완료**(2026-09-23, [ts/CURRICULUM.md](ts/CURRICULUM.md)): 깊이 중심, 목표=**판단력**. **Block0 심화(unknown/never/판별유니온/assertNever) 완료** → 다음 Block0 마무리→Block1 타입설계
+  - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료**(unknown/never/판별유니온/assertNever/void/interface vs type) · **Block1 타입설계 1유닛 완료**(정밀 union·illegal states 차단·readonly) → 다음 Block1 branded types
   - **JS** → **Day1(스코프·클로저·this) 완료** → Day2: 프로토타입·이벤트루프·비동기 예정
 - **park(나중에)**: **Vue** = 작은 CRUD 프로젝트로 한 방에 중급 / **SQL** = 전환 턴에서
 - **병렬 지원 트랙**: 매일 공고 확인 → 타당하면 지원 + 메모(회사·스택·결과). 준비도 무관, 사용자 직접 운영.
-- **최근**: 09-23 대장정 — ①TS 커리큘럼 재설계(깊이/판단력) + Block0 심화(unknown·never·판별유니온·assertNever) ②JS Day1(스코프·클로저·this: 호출지점 vs 스코프) ③코테 투포인터 2문제 완주(팰린드롬·two-sum) + while 근육 5드릴. while 무한루프 원리 체득
+- **최근**: 09-29(화, 추석 후 복귀) TS — Block0 마무리(void·interface vs type 판단) + **Block1 타입설계 1유닛**(정밀 리터럴 union·**잘못된 상태 표현 불가능하게**=불린플래그→판별유니온·optional절제·readonly). BookIn checkPrevPW 실무 개선. 문제 10개 통과
 
 ## 🧭 학습 로드맵 <!-- 숙달 기반 진급 -->
 | 단계 | 토픽 | 목표 수준 | 게이트(통과 기준) |
@@ -60,7 +60,7 @@
 | 토픽 | 트랙 | 상태 |
 | --- | --- | --- |
 | React/Next | 메인 루프 | 🔥 Day1 완료(리렌더·메모이제이션) |
-| TypeScript | 메인 루프 | 🔄 커리큘럼 재설계(깊이 중심) · Block0 심화 완료 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
+| TypeScript | 메인 루프 | 🔥 Block0 완료 · Block1 타입설계 진행 중 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
 | JS + 코테 | 메인 루프 | 🔥 Day1 완료(스코프·클로저·this) · 코테 투포인터 진행 |
 | SQL(PostgreSQL) | 전환 턴 | ⏸️ CTE 중급선 (park) |
 | Vue | 전환 턴 | ⏸️ Day2까지 (park, 나중에 프로젝트로) |
@@ -75,6 +75,7 @@
 ### TypeScript
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
 - [x] 2026-09-23 — **커리큘럼 재설계**(깊이 중심, 목표=판단력, [ts/CURRICULUM.md]) · **Block0 심화**: any/unknown(경계·좁히기강제)·never(빈집합·exhaustiveness)·narrowing·**판별 유니온**(태그+switch)·**assertNever**(재사용 exhaustiveness 가드) · 문제 5개 완료
+- [x] 2026-09-29 — **Block0 마무리**: void(콜백타입·반환무시) · interface vs type 판단(union/조건부→type, 객체·공개API·선언병합→interface, Window확장=interface만) · **Block1 타입설계 1유닛**: 정밀 리터럴 union · **잘못된 상태 표현 불가능하게**(불린플래그 여러개→판별유니온) · optional 절제 · readonly · (BookIn checkPrevPW 개선) · 문제 10개
 
 ### SQL
 - [x] 2026-09-16 — CTE / CTE 체이닝 / RANK vs ROW_NUMBER / 재귀 CTE / anti-join 복습
@@ -117,7 +118,11 @@
 - [ ] JS 클로저: 반환된 안쪽 함수가 바깥 변수를 "기억" → 바깥함수 끝나도 살아있음(makeCounter). 은닉·상태유지·useState 근원
 - [ ] JS while 무한루프 방지 3박자: ①조건 변수 확인 ②모든 갈래에서 전진 or 탈출(return/break) ③언젠가 조건 false. for의 `i++`를 몸통에 직접 넣은 게 while
 - [ ] TS unknown: any의 안전판(좁히기 전 사용 불가) → API응답·JSON.parse·`catch(e)` 경계에서 / never: 빈집합, exhaustiveness(`assertNever`)
-- [ ] TS 판별 유니온: 공통 리터럴 태그 + switch로 갈래 좁힘 + default `never`로 누락 검사(상태 모델링 핵심)
+- [ ] TS 판별 유니온: 공통 리터럴 태그 + switch로 갈래 좁힘 + default `never`로 누락 검사(상태 모델링 핵심) · 핵심요소=**공통 리터럴 태그**(never/default는 exhaustiveness 가드로 별개)
+- [ ] TS interface vs type: union/tuple/조건부/매핑드→**type만** / 객체·공개API·확장→interface / **Window 등 전역 확장=interface만(선언병합)** / 기본값="객체는 interface, 그 외는 type"
+- [ ] TS void: 콜백 타입(`()=>void`)엔 값 반환해도 무시됨(forEach 콜백에 push OK)
+- [ ] TS 타입설계 핵심: ①정해진 값=리터럴 union(string X) ②**잘못된 상태를 표현 불가능하게**=불린 플래그 여러개 대신 판별 유니온(illegal states 차단) ③optional 절제 ④불변=readonly
+- [ ] TS: 판별 유니온으로 리팩터 시 태그가 불린 플래그를 **대체(삭제)**—나란히 두면 중복/불일치
 - [ ] 투포인터: 슬라이딩(같은 방향, 창문 넓혔다 좁힘) vs 양끝(소거: 합 크면 큰쪽 버림 right--, 작으면 left++) / 팰린드롬=양끝 동시 이동
 - [ ] JS: 배열에 값 담기 — `push`=끝에 추가(변경) / `=`=통째 교체. 기본값 있는 배열에 push하면 덧붙음 주의. return 값은 자동으로 안 찍힘(호출을 log해야)
 

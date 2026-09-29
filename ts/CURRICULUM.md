@@ -70,4 +70,6 @@
 - **게이트 결과:** narrowing ✅ / any·unknown 개념OK 판단갭 🟡 / never 실전용도 모름 🟡 / **판별 유니온 ❌** / interface·type 판단 얇음 🟡
 - **완료(얕음, 재학습):** narrowing 기본·제네릭 기본·Pick/Omit/Record·keyof
 - **2026-09-23 완료:** Block 0 심화 유닛 = unknown(경계에서·좁히기강제)·never(빈집합·exhaustiveness)·narrowing(early return/typeof)·**판별 유니온**(태그+switch)·**assertNever**(재사용 exhaustiveness 가드, 컴파일+런타임 이중방어). 문제 5개 전부 통과.
-- **다음 유닛:** Block 0 마무리(`void`, `interface vs type` 판단 5분) → **Block 1 타입 설계** 진급
+- **2026-09-29 완료:** Block 0 마무리 = `void`(콜백 타입·반환무시)·**interface vs type 판단**(union/tuple/조건부→type / 객체·공개API·선언병합→interface / Window 확장=interface만 가능=선언병합). 문제 5개 통과. **→ Block 0 전체 완료(기초 tier 통과)**
+- **2026-09-29 완료:** Block 1 타입설계 1유닛 = 정밀 리터럴 union(string 대신)·**잘못된 상태를 표현 불가능하게**(불린 플래그 여러 개 → 판별 유니온, illegal states 차단)·optional 절제·`readonly` 불변. 문제 5개 통과(5번서 BookIn checkPrevPW를 error+errorMessage 판별유니온으로 실무 개선). **교훈: 판별유니온 전환 시 태그가 불린 플래그를 대체(삭제)—나란히 X.**
+- **다음 유닛:** Block 1 계속 = **branded/nominal types**(UserId≠string 도메인 안전) → 이후 `any` 격리·`unknown` 우선 정리 → Block 2 타입 파생
