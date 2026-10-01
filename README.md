@@ -70,8 +70,9 @@
 
 ## ✅ 진행 기록 <!-- 누적 (새 토픽은 ### 섹션 추가) -->
 ### React / Next
-- [x] 2026-09-22 — 렌더 2단계(Render Phase=함수 재호출·JSX 준비 / Commit Phase=diff 후 변경 DOM만 반영) · 리렌더≠DOM repaint · 리렌더 트리거 3가지(state·부모·context) · `React.memo`(props 얕은 비교로 스킵) · `useMemo`(값 캐싱) · `useCallback`(함수 참조 고정, `useMemo(()=>fn)`) · 실전 판단(BookListView: 아이템 20개·가벼움 → memo premature)
-- [x] 2026-10-01 — Day2: **key & reconciliation**(diff로 "같은 항목" 추적, key=정체성) · key 3조건=고유+안정+데이터결속 · index key 함정(위치기반→삭제/정렬 시 DOM·input state 오매칭) · random key 함정(불안정→매 렌더 전체 재생성) · **커스텀훅**(use~, 로직 재사용·상태는 독립 / useLike는 React Query 전역캐시로 데이터 공유 / 훅이 훅을 조합=useMypageQueryState→useUrlParams)
+> 상세 노트는 `react/날짜.md` 참고 (README는 요약 인덱스)
+- [x] 2026-09-22 — Day1: 렌더 2단계 · 리렌더≠DOM repaint · 메모이제이션 3형제(React.memo/useMemo/useCallback) · BookListView 실전 → [react/2026-09-22.md](react/2026-09-22.md)
+- [x] 2026-10-01 — Day2: key & reconciliation(key 3조건=고유+안정+데이터결속, index/random 함정) · 커스텀훅(로직 재사용·상태 독립 / React Query 전역캐시 / 훅 조합) → [react/2026-10-01.md](react/2026-10-01.md)
 
 ### TypeScript
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
