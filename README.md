@@ -9,14 +9,14 @@
 ## ▶️ 지금 여기 (다음 세션 시작점) <!-- ⚠️ 매 세션 끝에 갱신 · 새 대화는 여기부터 읽고 바로 이어감 -->
 - **현재 루프**: **메인 루프 — 코어 3종 `React/Next · TS · JS`** 3일 간격 순환
 - **본격 시작**: 2026-09-22(월) ✅ 시작함
-- **다음 세션**: TS=**Block1 계속(branded types)** / JS=**Day2**(프로토타입·이벤트루프·비동기) / 코테=투포인터 남은 문제(숫자의 표현·보석 쇼핑)
+- **다음 세션**: TS=**Block1 branded types** / JS=**프로토타입**(Day2서 미룸) / React=Day3(Context·RSC·Next 데이터패칭) / 코테=투포인터 **보석 쇼핑**(Lv3)
 - **각 코어 다음 진도**:
-  - **React/Next** → Day2: `key`의 역할·리스트 재조정(reconciliation)·**커스텀훅** _(Day1 리렌더/메모이제이션 3형제 완료)_
-  - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료**(unknown/never/판별유니온/assertNever/void/interface vs type) · **Block1 타입설계 1유닛 완료**(정밀 union·illegal states 차단·readonly) → 다음 Block1 branded types
-  - **JS** → **Day1(스코프·클로저·this) 완료** → Day2: 프로토타입·이벤트루프·비동기 예정
+  - **React/Next** → **Day2 완료**(key/reconciliation·커스텀훅) → Day3: Context·RSC·Next 라우팅/데이터패칭 _(Day1 리렌더/메모이제이션 완료)_
+  - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료** · **Block1 타입설계 1유닛 완료**(정밀 union·illegal states·readonly) → 다음 Block1 **branded types**
+  - **JS** → Day1·Day2(스코프·클로저·this / 이벤트루프·비동기) 완료 → 다음 **프로토타입**(Day2서 미룬 것) + 비동기 심화
 - **park(나중에)**: **Vue** = 작은 CRUD 프로젝트로 한 방에 중급 / **SQL** = 전환 턴에서
 - **병렬 지원 트랙**: 매일 공고 확인 → 타당하면 지원 + 메모(회사·스택·결과). 준비도 무관, 사용자 직접 운영.
-- **최근**: 09-29(화, 추석 후 복귀) TS — Block0 마무리(void·interface vs type 판단) + **Block1 타입설계 1유닛**(정밀 리터럴 union·**잘못된 상태 표현 불가능하게**=불린플래그→판별유니온·optional절제·readonly). BookIn checkPrevPW 실무 개선. 문제 10개 통과
+- **최근**: 10-01(목) React Day2 — key & reconciliation(key 3조건=고유+안정+데이터결속, index/random 함정) + 커스텀훅(로직 재사용·상태 독립 / React Query 전역캐시 공유 / 훅이 훅 조합). · (09-30 JS Day2 이벤트루프·비동기 + 코테 폰켓몬·숫자의표현 완료)
 
 ## 🧭 학습 로드맵 <!-- 숙달 기반 진급 -->
 | 단계 | 토픽 | 목표 수준 | 게이트(통과 기준) |
@@ -59,9 +59,9 @@
 ## 🎓 토픽 상태 <!-- 상태만 갱신 -->
 | 토픽 | 트랙 | 상태 |
 | --- | --- | --- |
-| React/Next | 메인 루프 | 🔥 Day1 완료(리렌더·메모이제이션) |
+| React/Next | 메인 루프 | 🔥 Day2 완료(리렌더·메모이제이션 / key·reconciliation·커스텀훅) |
 | TypeScript | 메인 루프 | 🔥 Block0 완료 · Block1 타입설계 진행 중 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
-| JS + 코테 | 메인 루프 | 🔥 Day1 완료(스코프·클로저·this) · 코테 투포인터 진행 |
+| JS + 코테 | 메인 루프 | 🔥 Day2 완료(스코프·클로저·this / 이벤트루프·비동기) · 코테 투포인터 진행(폰켓몬·숫자의표현) |
 | SQL(PostgreSQL) | 전환 턴 | ⏸️ CTE 중급선 (park) |
 | Vue | 전환 턴 | ⏸️ Day2까지 (park, 나중에 프로젝트로) |
 | 웹접근성 | 확장 | 🌱 Day1 맛보기 |
@@ -71,6 +71,7 @@
 ## ✅ 진행 기록 <!-- 누적 (새 토픽은 ### 섹션 추가) -->
 ### React / Next
 - [x] 2026-09-22 — 렌더 2단계(Render Phase=함수 재호출·JSX 준비 / Commit Phase=diff 후 변경 DOM만 반영) · 리렌더≠DOM repaint · 리렌더 트리거 3가지(state·부모·context) · `React.memo`(props 얕은 비교로 스킵) · `useMemo`(값 캐싱) · `useCallback`(함수 참조 고정, `useMemo(()=>fn)`) · 실전 판단(BookListView: 아이템 20개·가벼움 → memo premature)
+- [x] 2026-10-01 — Day2: **key & reconciliation**(diff로 "같은 항목" 추적, key=정체성) · key 3조건=고유+안정+데이터결속 · index key 함정(위치기반→삭제/정렬 시 DOM·input state 오매칭) · random key 함정(불안정→매 렌더 전체 재생성) · **커스텀훅**(use~, 로직 재사용·상태는 독립 / useLike는 React Query 전역캐시로 데이터 공유 / 훅이 훅을 조합=useMypageQueryState→useUrlParams)
 
 ### TypeScript
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
@@ -91,6 +92,7 @@
 ### JS / 코테
 - [x] 2026-09-20 — 해시맵 패턴 3문제 · Map/Set 숙지 · 배열 도구 지도(map/filter/reduce/forEach/find) · reduce 실전(카운팅/그룹핑) · Big-O 시간복잡도
 - [x] 2026-09-23 — **JS Day1**: 스코프(렉시컬)·클로저(makeCounter)·**this(호출지점 vs 스코프, 화살표=렉시컬)** · **코테 투포인터**: 팰린드롬(양끝 동시)·two-sum(양끝 소거)·연속부분수열합(슬라이딩) · **while 근육 5드릴**(3박자: 초기화·조건·전진)
+- [x] 2026-09-30 — **JS Day2**: 이벤트루프(콜스택·Web API·매크로/마이크로 태스크 큐, 마이크로 우선)·출력순서 예측·비동기(콜백→Promise→async/await, async=Promise반환) · **코테 투포인터**: 폰켓몬(Set, min(종류,N/2))·숫자의 표현(연속합 슬라이딩, 혼자 정답). 원리 OK, 코드 유창함은 반복으로
 
 ## 🔁 복습 리스트 <!-- 누적 (틀린 개념, 주말에 다시) -->
 - [ ] `Element`(DOM) ≠ `ReactNode`(React 자식)
@@ -123,6 +125,10 @@
 - [ ] TS void: 콜백 타입(`()=>void`)엔 값 반환해도 무시됨(forEach 콜백에 push OK)
 - [ ] TS 타입설계 핵심: ①정해진 값=리터럴 union(string X) ②**잘못된 상태를 표현 불가능하게**=불린 플래그 여러개 대신 판별 유니온(illegal states 차단) ③optional 절제 ④불변=readonly
 - [ ] TS: 판별 유니온으로 리팩터 시 태그가 불린 플래그를 **대체(삭제)**—나란히 두면 중복/불일치
+- [ ] React key: 조건 3개=**고유+안정(렌더간 불변)+데이터 결속**. index=고유하나 위치기반(삭제/정렬 시 DOM·input state 오매칭) / random=고유하나 불안정(매 렌더 전체 재생성). → DB id·isbn 같은 고유값
+- [ ] React 커스텀훅: 로직 재사용(상태는 호출 컴포넌트마다 **독립**). 단 React Query 캐시(키 기반)는 **전역 공유**(useLike=isbn키로 좋아요 공유). 훅이 훅을 조합 가능(규칙)—불안정도 전파됨
+- [ ] JS 이벤트루프: 콜스택 비면 **마이크로태스크(Promise.then) 전부 → 매크로태스크(setTimeout) 하나**. 마이크로 우선. `console/setTimeout(0)/Promise.then` 출력순서 예측
+- [ ] JS 비동기: async 함수는 **항상 Promise 반환**, await은 그 지점 대기(나머지는 마이크로태스크), try/catch로 에러
 - [ ] 투포인터: 슬라이딩(같은 방향, 창문 넓혔다 좁힘) vs 양끝(소거: 합 크면 큰쪽 버림 right--, 작으면 left++) / 팰린드롬=양끝 동시 이동
 - [ ] JS: 배열에 값 담기 — `push`=끝에 추가(변경) / `=`=통째 교체. 기본값 있는 배열에 push하면 덧붙음 주의. return 값은 자동으로 안 찍힘(호출을 log해야)
 
