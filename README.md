@@ -9,14 +9,14 @@
 ## ▶️ 지금 여기 (다음 세션 시작점) <!-- ⚠️ 매 세션 끝에 갱신 · 새 대화는 여기부터 읽고 바로 이어감 -->
 - **현재 루프**: **메인 루프 — 코어 3종 `React/Next · TS · JS`** 3일 간격 순환
 - **본격 시작**: 2026-09-22(월) ✅ 시작함
-- **다음 세션**: TS=**Block1 branded types** / JS=**프로토타입**(Day2서 미룸) / React=Day3(Context·RSC·Next 데이터패칭) / 코테=투포인터 **보석 쇼핑**(Lv3)
+- **다음 세션**: TS=**Block1 branded types** / JS=**프로토타입**(Day2서 미룸) / React=**Day4(Context·라우팅 심화)** / 코테=투포인터 **보석 쇼핑**(Lv3)
 - **각 코어 다음 진도**:
-  - **React/Next** → **Day2 완료**(key/reconciliation·커스텀훅) → Day3: Context·RSC·Next 라우팅/데이터패칭 _(Day1 리렌더/메모이제이션 완료)_
+  - **React/Next** → **Day3 완료**(RSC·데이터패칭·스트리밍, mypage-streaming 교재) → Day4: Context·Next 라우팅 심화 _(Day1~2 리렌더·메모이제이션·key·커스텀훅 완료)_
   - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료** · **Block1 타입설계 1유닛 완료**(정밀 union·illegal states·readonly) → 다음 Block1 **branded types**
   - **JS** → Day1·Day2(스코프·클로저·this / 이벤트루프·비동기) 완료 → 다음 **프로토타입**(Day2서 미룬 것) + 비동기 심화
 - **park(나중에)**: **Vue** = 작은 CRUD 프로젝트로 한 방에 중급 / **SQL** = 전환 턴에서
 - **병렬 지원 트랙**: 매일 공고 확인 → 타당하면 지원 + 메모(회사·스택·결과). 준비도 무관, 사용자 직접 운영.
-- **최근**: 10-01(목) React Day2 — key & reconciliation(key 3조건=고유+안정+데이터결속, index/random 함정) + 커스텀훅(로직 재사용·상태 독립 / React Query 전역캐시 공유 / 훅이 훅 조합). · (09-30 JS Day2 이벤트루프·비동기 + 코테 폰켓몬·숫자의표현 완료)
+- **최근**: 10-08(목, 국경절 후 복귀) React Day3 — RSC(서버/클라 컴포넌트)·데이터패칭(prefetch→hydration)·스트리밍(Suspense), **BookIn mypage-streaming 리팩터로 체득**(브라우저 검증 완료, 추천 새로고침 시 section별 스켈레톤 확인). 이후 mypage-streaming 커밋 예정
 
 ## 🧭 학습 로드맵 <!-- 숙달 기반 진급 -->
 | 단계 | 토픽 | 목표 수준 | 게이트(통과 기준) |
@@ -59,7 +59,7 @@
 ## 🎓 토픽 상태 <!-- 상태만 갱신 -->
 | 토픽 | 트랙 | 상태 |
 | --- | --- | --- |
-| React/Next | 메인 루프 | 🔥 Day2 완료(리렌더·메모이제이션 / key·reconciliation·커스텀훅) |
+| React/Next | 메인 루프 | 🔥 Day3 완료(리렌더·메모이제이션 / key·커스텀훅 / RSC·데이터패칭·스트리밍) |
 | TypeScript | 메인 루프 | 🔥 Block0 완료 · Block1 타입설계 진행 중 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
 | JS + 코테 | 메인 루프 | 🔥 Day2 완료(스코프·클로저·this / 이벤트루프·비동기) · 코테 투포인터 진행(폰켓몬·숫자의표현) |
 | SQL(PostgreSQL) | 전환 턴 | ⏸️ CTE 중급선 (park) |
@@ -73,6 +73,7 @@
 > 상세 노트는 `react/날짜.md` 참고 (README는 요약 인덱스)
 - [x] 2026-09-22 — Day1: 렌더 2단계 · 리렌더≠DOM repaint · 메모이제이션 3형제(React.memo/useMemo/useCallback) · BookListView 실전 → [react/2026-09-22.md](react/2026-09-22.md)
 - [x] 2026-10-01 — Day2: key & reconciliation(key 3조건=고유+안정+데이터결속, index/random 함정) · 커스텀훅(로직 재사용·상태 독립 / React Query 전역캐시 / 훅 조합) → [react/2026-10-01.md](react/2026-10-01.md)
+- [x] 2026-10-08 — Day3: **RSC(서버 vs 클라 컴포넌트)** · 데이터패칭(서버 prefetch→dehydrate→HydrationBoundary→클라) · 스트리밍(Suspense) — **BookIn mypage-streaming으로 체득**(MypageContentServer=서버, MypageContent=클라, 브라우저 검증 완료) → [react/2026-10-08.md](react/2026-10-08.md)
 
 ### TypeScript
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
@@ -130,6 +131,8 @@
 - [ ] React 커스텀훅: 로직 재사용(상태는 호출 컴포넌트마다 **독립**). 단 React Query 캐시(키 기반)는 **전역 공유**(useLike=isbn키로 좋아요 공유). 훅이 훅을 조합 가능(규칙)—불안정도 전파됨
 - [ ] JS 이벤트루프: 콜스택 비면 **마이크로태스크(Promise.then) 전부 → 매크로태스크(setTimeout) 하나**. 마이크로 우선. `console/setTimeout(0)/Promise.then` 출력순서 예측
 - [ ] JS 비동기: async 함수는 **항상 Promise 반환**, await은 그 지점 대기(나머지는 마이크로태스크), try/catch로 에러
+- [ ] RSC: 서버 컴포넌트(기본)=서버만·직접 fetch/DB·JS 번들 안 감 / 클라(`'use client'`)=브라우저·hooks·이벤트·JS 감. 클라는 서버를 import 못 함(children으로만), 서버 DB코드는 클라에 못 넣음(runtime)
+- [ ] Next 데이터패칭: 서버 prefetch→dehydrate→HydrationBoundary→클라 useQuery 캐시 재사용(로딩 없이) + staleTime으로 중복 refetch 방지 / Suspense=스트리밍(껍데기 먼저)
 - [ ] 투포인터: 슬라이딩(같은 방향, 창문 넓혔다 좁힘) vs 양끝(소거: 합 크면 큰쪽 버림 right--, 작으면 left++) / 팰린드롬=양끝 동시 이동
 - [ ] JS: 배열에 값 담기 — `push`=끝에 추가(변경) / `=`=통째 교체. 기본값 있는 배열에 push하면 덧붙음 주의. return 값은 자동으로 안 찍힘(호출을 log해야)
 
