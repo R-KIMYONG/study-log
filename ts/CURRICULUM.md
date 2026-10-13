@@ -72,4 +72,5 @@
 - **2026-09-23 완료:** Block 0 심화 유닛 = unknown(경계에서·좁히기강제)·never(빈집합·exhaustiveness)·narrowing(early return/typeof)·**판별 유니온**(태그+switch)·**assertNever**(재사용 exhaustiveness 가드, 컴파일+런타임 이중방어). 문제 5개 전부 통과.
 - **2026-09-29 완료:** Block 0 마무리 = `void`(콜백 타입·반환무시)·**interface vs type 판단**(union/tuple/조건부→type / 객체·공개API·선언병합→interface / Window 확장=interface만 가능=선언병합). 문제 5개 통과. **→ Block 0 전체 완료(기초 tier 통과)**
 - **2026-09-29 완료:** Block 1 타입설계 1유닛 = 정밀 리터럴 union(string 대신)·**잘못된 상태를 표현 불가능하게**(불린 플래그 여러 개 → 판별 유니온, illegal states 차단)·optional 절제·`readonly` 불변. 문제 5개 통과(5번서 BookIn checkPrevPW를 error+errorMessage 판별유니온으로 실무 개선). **교훈: 판별유니온 전환 시 태그가 불린 플래그를 대체(삭제)—나란히 X.**
-- **다음 유닛:** Block 1 계속 = **branded/nominal types**(UserId≠string 도메인 안전) → 이후 `any` 격리·`unknown` 우선 정리 → Block 2 타입 파생
+- **2026-10-13 완료:** Block 1 branded types = 구조적 타이핑 함정(UserId/BookId 다 string이라 섞여도 OK) → phantom brand(`string & {__brand}`)로 **명목적 구분** · 스마트 생성자(검증 포함) · 재사용 제네릭 `Brand<T,B>` · **인자 순서 혼동을 컴파일이 차단**(실제 에러메시지로 증명). BookIn user_id/book_id/isbn13/item_id 섞임 방어. 문제 5개 통과. **→ Block 1 전체 완료(타입 설계 tier 통과)**
+- **다음 유닛:** **Block 2 타입 파생·추론**(pain 직격) = typeof·keyof·indexed access·as const·satisfies·ReturnType/Parameters·유틸타입으로 "손으로 타입 안 쓰기" + BookIn 파라미터 타입 리팩터

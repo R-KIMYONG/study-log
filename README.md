@@ -9,14 +9,14 @@
 ## ▶️ 지금 여기 (다음 세션 시작점) <!-- ⚠️ 매 세션 끝에 갱신 · 새 대화는 여기부터 읽고 바로 이어감 -->
 - **현재 루프**: **메인 루프 — 코어 3종 `React/Next · TS · JS`** 3일 간격 순환
 - **본격 시작**: 2026-09-22(월) ✅ 시작함
-- **다음 세션**: TS=**Block1 branded types** / JS=**프로토타입**(Day2서 미룸) / React=**Day4(Context·라우팅 심화)** / 코테=투포인터 **보석 쇼핑**(Lv3)
+- **다음 세션**: TS=**Block2 타입 파생**(typeof·keyof·indexed access·as const·satisfies·ReturnType) / JS=**프로토타입**(Day2서 미룸) / React=**Day4(Context·라우팅 심화)** / 코테=투포인터 **보석 쇼핑**(Lv3)
 - **각 코어 다음 진도**:
   - **React/Next** → **Day3 완료**(RSC·데이터패칭·스트리밍, mypage-streaming 교재) → Day4: Context·Next 라우팅 심화 _(Day1~2 리렌더·메모이제이션·key·커스텀훅 완료)_
-  - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료** · **Block1 타입설계 1유닛 완료**(정밀 union·illegal states·readonly) → 다음 Block1 **branded types**
+  - **TS** → [ts/CURRICULUM.md](ts/CURRICULUM.md) 깊이 중심, 목표=**판단력**. **Block0 완료 · Block1 타입설계 완료**(정밀 union·illegal states·readonly·**branded types**) → 다음 **Block2 타입 파생**(pain 직격: 손으로 타입 안 쓰기)
   - **JS** → Day1·Day2(스코프·클로저·this / 이벤트루프·비동기) 완료 → 다음 **프로토타입**(Day2서 미룬 것) + 비동기 심화
 - **park(나중에)**: **Vue** = 작은 CRUD 프로젝트로 한 방에 중급 / **SQL** = 전환 턴에서
 - **병렬 지원 트랙**: 매일 공고 확인 → 타당하면 지원 + 메모(회사·스택·결과). 준비도 무관, 사용자 직접 운영.
-- **최근**: 10-08(목, 국경절 후 복귀) React Day3 — RSC(서버/클라 컴포넌트)·데이터패칭(prefetch→hydration)·스트리밍(Suspense), **BookIn mypage-streaming 리팩터로 체득**(브라우저 검증 완료, 추천 새로고침 시 section별 스켈레톤 확인). 이후 mypage-streaming 커밋 예정
+- **최근**: 10-13(화) TS Block1 branded types — 구조적 타이핑 함정(ID들 다 string) → phantom brand로 명목적 구분, 제네릭 `Brand<T,B>`, 인자 순서 혼동 컴파일 차단. **Block1(타입설계) 전체 완료.** · (프로젝트: mypage-streaming 커밋 대기 중 + 전역 스트리밍 리팩터 예정)
 
 ## 🧭 학습 로드맵 <!-- 숙달 기반 진급 -->
 | 단계 | 토픽 | 목표 수준 | 게이트(통과 기준) |
@@ -60,7 +60,7 @@
 | 토픽 | 트랙 | 상태 |
 | --- | --- | --- |
 | React/Next | 메인 루프 | 🔥 Day3 완료(리렌더·메모이제이션 / key·커스텀훅 / RSC·데이터패칭·스트리밍) |
-| TypeScript | 메인 루프 | 🔥 Block0 완료 · Block1 타입설계 진행 중 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
+| TypeScript | 메인 루프 | 🔥 Block0·Block1(타입설계) 완료 · 다음 Block2 타입파생 → [ts/CURRICULUM.md](ts/CURRICULUM.md) |
 | JS + 코테 | 메인 루프 | 🔥 Day2 완료(스코프·클로저·this / 이벤트루프·비동기) · 코테 투포인터 진행(폰켓몬·숫자의표현) |
 | SQL(PostgreSQL) | 전환 턴 | ⏸️ CTE 중급선 (park) |
 | Vue | 전환 턴 | ⏸️ Day2까지 (park, 나중에 프로젝트로) |
@@ -79,6 +79,7 @@
 - [x] 2026-09-09 — narrowing / 제네릭 / Omit·Pick·Partial / Record / map 콜백 / keyof 제약
 - [x] 2026-09-23 — **커리큘럼 재설계**(깊이 중심, 목표=판단력, [ts/CURRICULUM.md]) · **Block0 심화**: any/unknown(경계·좁히기강제)·never(빈집합·exhaustiveness)·narrowing·**판별 유니온**(태그+switch)·**assertNever**(재사용 exhaustiveness 가드) · 문제 5개 완료
 - [x] 2026-09-29 — **Block0 마무리**: void(콜백타입·반환무시) · interface vs type 판단(union/조건부→type, 객체·공개API·선언병합→interface, Window확장=interface만) · **Block1 타입설계 1유닛**: 정밀 리터럴 union · **잘못된 상태 표현 불가능하게**(불린플래그 여러개→판별유니온) · optional 절제 · readonly · (BookIn checkPrevPW 개선) · 문제 10개
+- [x] 2026-10-13 — **Block1 branded types**: 구조적 타이핑 함정(ID들 다 string이라 섞임) → phantom brand로 명목적 구분 · 스마트 생성자(검증) · 제네릭 `Brand<T,B>` · **인자 순서 혼동을 컴파일이 차단** · 문제 5개 **→ Block1(타입설계) 전체 완료**
 
 ### SQL
 - [x] 2026-09-16 — CTE / CTE 체이닝 / RANK vs ROW_NUMBER / 재귀 CTE / anti-join 복습
@@ -133,6 +134,8 @@
 - [ ] JS 비동기: async 함수는 **항상 Promise 반환**, await은 그 지점 대기(나머지는 마이크로태스크), try/catch로 에러
 - [ ] RSC: 서버 컴포넌트(기본)=서버만·직접 fetch/DB·JS 번들 안 감 / 클라(`'use client'`)=브라우저·hooks·이벤트·JS 감. 클라는 서버를 import 못 함(children으로만), 서버 DB코드는 클라에 못 넣음(runtime)
 - [ ] Next 데이터패칭: 서버 prefetch→dehydrate→HydrationBoundary→클라 useQuery 캐시 재사용(로딩 없이) + staleTime으로 중복 refetch 방지 / Suspense=스트리밍(껍데기 먼저)
+- [ ] TS branded types: TS는 구조적 타이핑이라 `UserId=string`·`BookId=string`이 섞임 → `string & {readonly __brand:'X'}`로 명목적 구분. phantom brand(런타임 없음). 값 만들 땐 스마트 생성자(검증+캐스팅). 제네릭 `type Brand<T,B> = T & {readonly __brand:B}`. 인자 순서 혼동을 컴파일이 차단
+- [ ] RSC children 패턴: 클라 컴포넌트에 서버 컴포넌트를 **children/props로** 넘기면 서버 유지(`<Client>{server}</Client>`). import해서 직접 렌더하면 클라化. HydrationBoundary(클라)가 상위여도 children 서버 유지=과하이드레이션 아님(정적 부분은 하이드레이션 안 됨). 간단한 값은 children 말고 prop
 - [ ] 투포인터: 슬라이딩(같은 방향, 창문 넓혔다 좁힘) vs 양끝(소거: 합 크면 큰쪽 버림 right--, 작으면 left++) / 팰린드롬=양끝 동시 이동
 - [ ] JS: 배열에 값 담기 — `push`=끝에 추가(변경) / `=`=통째 교체. 기본값 있는 배열에 push하면 덧붙음 주의. return 값은 자동으로 안 찍힘(호출을 log해야)
 
